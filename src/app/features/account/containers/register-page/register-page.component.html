@@ -1,0 +1,33 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>Créer un compte</ion-title>
+        <ion-button slot="start">
+            <ion-menu-button menu="main-menu"></ion-menu-button>
+        </ion-button>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <div class="registerForm">
+      <form [formGroup]="registerForm" (ngSubmit)="registerNewUser()">
+        <ion-item>
+          <ion-label>Email </ion-label>
+          <ion-input type="email" placeholder="Adresse email" formControlName="email"></ion-input>
+        </ion-item>
+  
+        <ion-item>
+          <ion-label>Mots de passe </ion-label>
+          <ion-input type="password" placeholder="Mot de passe" formControlName="pw"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label>Répeter mots de passe </ion-label>
+          <ion-input type="password" placeholder="Mot de passe" formControlName="pw2"></ion-input>
+        </ion-item>
+        <ion-item lines="none">
+          <ion-button fill="clear" slot="end" routerLink="/account"> Déjà un compte ?</ion-button>
+        </ion-item>
+        <ion-button shape="round" expand="block" type="submit" [disabled]="!registerForm.valid">S'enregistrer</ion-button>
+  
+      </form>
+    </div>
+  </ion-content>

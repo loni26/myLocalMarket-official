@@ -4,3 +4,21 @@
 
 /* To quickly generate your own theme, check out the color generator */
 /* https://ionicframework.com/docs/theming/color-generator */
+:root {
+
+    /*Primary */
+    --ion-color-primary: #a65300;
+    --ion-color-primary-rgb: 166,83,0;
+    --ion-color-primary-contrast: #ffffff;
+    --ion-color-primary-contrast-rgb: 255,255,255;
+    --ion-color-primary-shade: #924900;
+    --ion-color-primary-tint: #af641a;
+
+    /*Secondary*/
+    --ion-color-secondary: #008800;
+    --ion-color-secondary-rgb: 0,136,0;
+    --ion-color-secondary-contrast: #ffffff;
+    --ion-color-secondary-contrast-rgb: 255,255,255;
+    --ion-color-secondary-shade: #007800;
+    --ion-color-secondary-tint: #1a941a;
+  }

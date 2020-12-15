@@ -1,0 +1,34 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>Se connecter</ion-title>
+        <ion-button slot="start">
+            <ion-menu-button menu="main-menu"></ion-menu-button>
+        </ion-button>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <div class="logo">
+        <ion-icon color="secondary"name="basket"></ion-icon>
+    </div>
+    
+      <div class="loginForm">
+        <form [formGroup]="logInForm" (ngSubmit)="login()">
+            <ion-item>
+                <ion-label>Email </ion-label>
+                <ion-input type="email" placeholder="Adresse email" formControlName="email"></ion-input>
+              </ion-item>
+          
+              <ion-item>
+                <ion-label>Mots de passe </ion-label>
+                <ion-input type="password" placeholder="Mot de passe" formControlName="password"></ion-input>
+              </ion-item>
+              <ion-item lines="none">
+                <ion-button fill="clear" slot="end"> Mot de passe oublié ?</ion-button>
+              </ion-item>
+              <ion-button shape="round" expand="block" type="submit" [disabled]="!logInForm.valid">Se connecter</ion-button>
+              <br>
+              <ion-button shape="round" expand="block" (click)="register()">Inscription</ion-button>
+        </form>
+      </div>
+</ion-content>
