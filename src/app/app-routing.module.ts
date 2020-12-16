@@ -7,6 +7,7 @@ import { SearchComponent } from './features/search/search.component';
 import { HomeComponent } from './features/home/home.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AddProductComponent } from './features/account/containers/add-product/add-product.component';
 
 const routes: Routes = [ 
   {
@@ -29,6 +30,11 @@ const routes: Routes = [
   {
     path: 'userInfo',
     component: AddUserInfoComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'addProduct',
+    component: AddProductComponent,
     canActivate: [AuthGuard]
   },
   {

@@ -1,1 +1,68 @@
-<p>add-user-info works!</p>
+<ion-header>
+    <ion-toolbar>
+        <ion-title>Ajouter vos informations</ion-title>
+        <ion-button slot="start">
+            <ion-menu-button menu="main-menu"></ion-menu-button>
+        </ion-button>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-item>
+      <div class="imgMarket">
+        <ion-img [src]="url"></ion-img>
+      </div>
+    </ion-item>
+    <div class="ion-text-center">
+      <ion-button #btn (click)="takePhoto()">Ajouter une photo de couverture</ion-button>
+    </div>
+    <div class="userInfoForm">
+      <form [formGroup]="userInfoForm" (ngSubmit)="registerUserInfo()">
+        <ion-item>
+          <ion-label>Nom </ion-label>
+          <ion-input type="text" placeholder="Nom du domaine" formControlName="domainName"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label>Adresse</ion-label>
+          <ion-input type="text" placeholder="Adresse du domaine" formControlName="domainAddress"></ion-input>
+        </ion-item>
+  
+        <ion-item>
+          <ion-label>Localité</ion-label>
+          <ion-input type="text" placeholder="Votre localité" formControlName="localite"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label>Code postal</ion-label>
+          <ion-input type="text" placeholder="code postal" formControlName="cp"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label>Courriel</ion-label>
+          <ion-input type="email" placeholder="courriel" formControlName="courriel"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label>site internet</ion-label>
+          <ion-input type="text" placeholder="votre addresse web" formControlName="adWeb"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label>Numéro de téléphone</ion-label>
+          <ion-input type="text" placeholder="numéro de contact" formControlName="numero"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-title>Information gérant</ion-title>
+        </ion-item>
+  
+        <ion-item>
+          <ion-label>Nom </ion-label>
+          <ion-input type="text" placeholder="Nom" formControlName="lastName"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label>Prénom</ion-label>
+          <ion-input type="text" placeholder="Votre prénom" formControlName="firstName"></ion-input>
+        </ion-item>
+  
+        <ion-button shape="round" expand="block" type="submit" [disabled]="!userInfoForm.valid">Enregistrer</ion-button>
+        <br>
+      </form>
+    </div>
+    
+  </ion-content>

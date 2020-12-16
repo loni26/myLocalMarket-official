@@ -10,12 +10,13 @@ import { AddUserInfoComponent } from './features/account/containers/add-user-inf
 import { UserPageComponent } from './features/account/containers/user-page/user-page.component';
 import { HomeComponent } from './features/home/home.component';
 import { SearchComponent } from './features/search/search.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { environment } from 'src/environments/environment';
+import { AddProductComponent } from './features/account/containers/add-product/add-product.component';
 
 @NgModule({
   declarations: [
@@ -25,14 +26,18 @@ import { environment } from 'src/environments/environment';
     AddUserInfoComponent,
     UserPageComponent,
     HomeComponent,
-    SearchComponent
+    SearchComponent,
+    AddProductComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     IonicModule.forRoot(),
     AngularFireModule.initializeApp(environment.firebaseConfig),
-    ReactiveFormsModule
+    AngularFireAuthModule,
+    AngularFirestoreModule,
+    ReactiveFormsModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

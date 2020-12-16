@@ -4,6 +4,8 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 import {switchMap } from 'rxjs/operators'
 import { AngularFirestore } from '@angular/fire/firestore';
+import firebase from 'firebase/app';
+
 
 
 @Injectable({
@@ -11,7 +13,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 })
 export class UserService {
 
-  user$: Observable<any>;
+  user$: Observable<firebase.User>;
 
   constructor(public firebaseAuth: AngularFireAuth, private _route: Router, private _afs: AngularFirestore) { 
     this.user$= this.firebaseAuth.authState.pipe(
@@ -28,7 +30,7 @@ export class UserService {
   async signin(email: string, password: string) {
     try {
       await this.firebaseAuth.signInWithEmailAndPassword(email, password).then(()=> {
-        this._route.navigate(['/userInfo']);
+        this._route.navigate(['/userPage']);
       })
     } catch (err) {
       console.log('erreur =>', err); // pour travailler ensuite les erreurs d'auth   

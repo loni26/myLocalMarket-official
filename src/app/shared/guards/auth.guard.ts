@@ -8,11 +8,11 @@ import { map, take, tap } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class AuthGuard implements CanActivate {
-  constructor(private auth: UserService, private _route: Router){}
+  constructor(private _auth: UserService, private _route: Router){}
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean>{
-     return this.auth.user$.pipe(
+     return this._auth.user$.pipe(
         take(1),
         map(user => !!user),
         tap(loggedIn => {
