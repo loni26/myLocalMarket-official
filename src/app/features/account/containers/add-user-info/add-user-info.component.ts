@@ -1,7 +1,9 @@
+import { CameraService } from './../../../../shared/services/camera.service';
 import { MarketService } from './../../../../shared/services/market.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
+const  HTTP_URL_PATTERN:string = '^((http[s]?):\\/)\\/?([^:\\/\\s]+)((\\/\\w+)*)([\\w\\-\\.]+[^#?\\s]+)(.*)?(#[\\w\\-]+)?$';
 
 @Component({
   selector: 'app-add-user-info',
@@ -10,10 +12,10 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 })
 export class AddUserInfoComponent implements OnInit {
 
-  url: string = "../../../../../assets/default-img/market.png";
+  url: string ='';
   userInfoForm: FormGroup;
 
-  constructor(private _mk: MarketService, private fb: FormBuilder) {
+  constructor(private _mk: MarketService, private fb: FormBuilder, private _camera: CameraService) {
   }
 
   ngOnInit(): void {
@@ -27,9 +29,15 @@ export class AddUserInfoComponent implements OnInit {
       numero: ['', Validators.required],
       // gérant information
       lastName: ['', Validators.required],
-      firstName: ['', Validators.required]
+      firstName: ['', Validators.required],
+      image: ['', Validators.pattern(HTTP_URL_PATTERN)]
     })
 
+  }
+
+  onFileChange(event){
+    console.log('------>', event.target.files[0]);
+    // event.target.files[0]
   }
 
   registerUserInfo(): void {
@@ -52,8 +60,9 @@ export class AddUserInfoComponent implements OnInit {
   }
 
   async takePhoto() {
-    
-    /* this.url = await this._camera.takePicture(); */
+    this._camera.takePicture();
+     this.url = await this._camera.uploadedImgURL;
+   
     
   }
 

@@ -7,6 +7,14 @@
     </ion-toolbar>
 </ion-header>
 <ion-content>
+    <ion-item>
+        <div class="imgMarket">
+          <ion-img [src]="url"></ion-img>
+        </div>
+      </ion-item>
+      <div class="ion-text-center">
+        <ion-button #btn (click)="takePhoto()">Ajouter une photo du produit</ion-button>
+      </div>
     <div class="registerForm">
       <form [formGroup]="productForm" >
         <ion-item>

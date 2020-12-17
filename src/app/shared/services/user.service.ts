@@ -2,7 +2,7 @@ import { Observable, of  } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
-import {switchMap } from 'rxjs/operators'
+import {map } from 'rxjs/operators'
 import { AngularFirestore } from '@angular/fire/firestore';
 import firebase from 'firebase/app';
 
@@ -13,19 +13,23 @@ import firebase from 'firebase/app';
 })
 export class UserService {
 
-  user$: Observable<firebase.User>;
+  user$: Observable<any>;
 
   constructor(public firebaseAuth: AngularFireAuth, private _route: Router, private _afs: AngularFirestore) { 
     this.user$= this.firebaseAuth.authState.pipe(
-      switchMap(user => {
+      map(user => {
        if (user) {
          return user.uid
        } else {
          return of(null)
        }
       })
-    )
+    )  
+  }
 
+  getCurrentUser() {s
+    let user = this.firebaseAuth.currentUser;
+    return user;
   }
   async signin(email: string, password: string) {
     try {

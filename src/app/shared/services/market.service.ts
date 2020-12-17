@@ -19,10 +19,10 @@ export class MarketService implements OnDestroy {
      
   }
 
-  createInfoUser(domainName: string, domainAddress: string, localite: string,
+  async createInfoUser(domainName: string, domainAddress: string, localite: string,
     cp: string, courriel: string, adWeb: string, numero: string,
-    lastName: string, firstName:string):void{
-      this.afs.collection(this.collectionName).doc(`mk-${this.user.uid}`).set({
+    lastName: string, firstName:string){
+       this.afs.collection(this.collectionName).doc(`mk-${this.user.uid}`).set({
         domainName,
         domainAddress,
         localite,

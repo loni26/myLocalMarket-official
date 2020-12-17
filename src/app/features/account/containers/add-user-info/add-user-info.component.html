@@ -8,16 +8,15 @@
 </ion-header>
 
 <ion-content>
-    <ion-item>
-      <div class="imgMarket">
-        <ion-img [src]="url"></ion-img>
-      </div>
-    </ion-item>
-    <div class="ion-text-center">
-      <ion-button #btn (click)="takePhoto()">Ajouter une photo de couverture</ion-button>
-    </div>
     <div class="userInfoForm">
+      
       <form [formGroup]="userInfoForm" (ngSubmit)="registerUserInfo()">
+        <ion-item>
+        <div class="imgMarket">
+          <ion-img [src]="url"></ion-img>
+        </div>
+      </ion-item>
+        <ion-button  #btn (click)="takePhoto()" >Ajouter une photo de couverture</ion-button>
         <ion-item>
           <ion-label>Nom </ion-label>
           <ion-input type="text" placeholder="Nom du domaine" formControlName="domainName"></ion-input>

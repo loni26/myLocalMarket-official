@@ -7,7 +7,9 @@
     </ion-toolbar>
 </ion-header>
 <ion-content>
-    <ion-content>
+        <div *ngIf="products$|async as product ">
+            <p>{{product}}</p>
+        </div>
         <ion-button routerLink="/addProduct">Ajouter un produit </ion-button>
-    </ion-content>
+    
 </ion-content>

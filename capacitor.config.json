@@ -1,0 +1,13 @@
+{
+  "appId": "com.myLocalMarket.nc",
+  "appName": "my-local-market",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "www",
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 0
+    }
+  },
+  "cordova": {}
+}
