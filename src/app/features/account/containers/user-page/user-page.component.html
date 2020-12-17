@@ -10,6 +10,7 @@
         <div *ngIf="products$|async as product ">
             <p>{{product}}</p>
         </div>
-        <ion-button routerLink="/addProduct">Ajouter un produit </ion-button>
+        <ion-button (click)="navigate()">Ajouter un produit </ion-button>
+        <ion-button (click)="logOut()">deconnexion</ion-button>
     
 </ion-content>

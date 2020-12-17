@@ -1,8 +1,7 @@
-import { Observable, of  } from 'rxjs';
+import { Observable, of, Subject, Subscription } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
-import {map } from 'rxjs/operators'
 import { AngularFirestore } from '@angular/fire/firestore';
 import firebase from 'firebase/app';
 
@@ -13,28 +12,25 @@ import firebase from 'firebase/app';
 })
 export class UserService {
 
-  user$: Observable<any>;
+  private _user$: Subject<firebase.User> = new Subject();
+  myUser$: Observable<firebase.User> = this._user$.asObservable();
+  sub: Subscription;
 
   constructor(public firebaseAuth: AngularFireAuth, private _route: Router, private _afs: AngularFirestore) { 
-    this.user$= this.firebaseAuth.authState.pipe(
-      map(user => {
-       if (user) {
-         return user.uid
-       } else {
-         return of(null)
-       }
-      })
+    this.sub= this.firebaseAuth.authState.subscribe((data)=>
+      this._user$.next(data)
     )  
   }
 
-  getCurrentUser() {s
+
+  getCurrentUser() {
     let user = this.firebaseAuth.currentUser;
     return user;
   }
   async signin(email: string, password: string) {
     try {
       await this.firebaseAuth.signInWithEmailAndPassword(email, password).then(()=> {
-        this._route.navigate(['/userPage']);
+        this._route.navigate(['/account']);
       })
     } catch (err) {
       console.log('erreur =>', err); // pour travailler ensuite les erreurs d'auth   
@@ -49,5 +45,10 @@ export class UserService {
     } catch (error) {
       console.log('erreur =>', error); // pour travailler ensuite les erreurs d'auth 
     }
+  }
+
+  logOut(){
+    this.firebaseAuth.signOut();
+    this._route.navigate(['/login']);
   }
 }

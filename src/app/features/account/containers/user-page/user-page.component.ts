@@ -1,7 +1,8 @@
+import { Router } from '@angular/router';
+import { UserService } from './../../../../shared/services/user.service';
 import { ProductService } from './../../../../shared/services/product.service';
 import { Observable, Subscription } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
-import { IProduct } from 'src/app/shared/models/product';
 
 @Component({
   selector: 'app-user-page',
@@ -12,11 +13,21 @@ export class UserPageComponent implements OnInit {
 
   products$: Observable<any>
   sub: Subscription;
-  constructor(private _ps: ProductService) { }
+  constructor(private _ps: ProductService, private us: UserService, private _router: Router) { }
 
   async ngOnInit() {
 
-    this.products$= this._ps.readProductUser();
+    /* this.products$= this._ps.readProductUser(); */
+  }
+
+  navigate(){
+    console.log('lool');
+    
+    this._router.navigate['addProduct'];
+  }
+
+  logOut(){
+    this.us.logOut();
   }
 
 }
