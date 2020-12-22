@@ -30,6 +30,7 @@ export class LoginPageComponent implements OnInit {
     const email = this.logInForm.value.email;
     const password = this.logInForm.value.password;
     this._us.signin(email, password)
+    this.logInForm.reset();
   }
 
   register(){

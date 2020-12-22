@@ -14,10 +14,10 @@ export class CameraService {
   uploadedImgURL: string;
   phFile;
   constructor(private _storage:  AngularFireStorage, private _auth: UserService) {
-    this._auth.getCurrentUser().then( user => {
+    /* this._auth.getCurrentUser().then( user => {
       this.user = user.uid
     }
-    );
+    ); */
    }
 
   async takePicture(){

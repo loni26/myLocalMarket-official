@@ -20,23 +20,22 @@ const routes: Routes = [
   },
   {
     path: 'account',
-    component: UserPageComponent,
-    canActivate: [AuthGuard],
-    children: [
-      {
-        path: 'userInfo',
-        component: AddUserInfoComponent
-      },
-      {
-        path: 'addProduct',
-        component: AddProductComponent
-      },
-    ]
+    component: LoginPageComponent,
   },
   {
-    path: 'login',
-    component: LoginPageComponent
-  }, 
+    path: 'userPage',
+    component: UserPageComponent,
+    
+  },
+  {
+    path: 'userInfo',
+    component: AddUserInfoComponent,
+   
+  },
+  {
+    path: 'addProduct',
+    component: AddProductComponent,
+  },
   {
     path: 'register',
     component: RegisterPageComponent

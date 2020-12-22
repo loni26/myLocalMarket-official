@@ -18,19 +18,20 @@ export class UserService {
 
   constructor(public firebaseAuth: AngularFireAuth, private _route: Router, private _afs: AngularFirestore) { 
     this.sub= this.firebaseAuth.authState.subscribe((data)=>
-      this._user$.next(data)
+      this._user$.next(data),
     )  
   }
 
 
-  getCurrentUser() {
-    let user = this.firebaseAuth.currentUser;
-    return user;
+  getCurrentUserUid() {
+    return  this.firebaseAuth.currentUser;
+    
   }
   async signin(email: string, password: string) {
     try {
-      await this.firebaseAuth.signInWithEmailAndPassword(email, password).then(()=> {
-        this._route.navigate(['/account']);
+      await this.firebaseAuth.signInWithEmailAndPassword(email, password).then((res)=> {
+        localStorage.setItem('user', JSON.stringify(res.user))
+        this._route.navigate(['userPage']);
       })
     } catch (err) {
       console.log('erreur =>', err); // pour travailler ensuite les erreurs d'auth   
@@ -39,7 +40,8 @@ export class UserService {
 
   async signup(email: string, password: string) {
     try {
-      await this.firebaseAuth.createUserWithEmailAndPassword(email, password).then(() => {
+      await this.firebaseAuth.createUserWithEmailAndPassword(email, password).then((res) => {
+        localStorage.setItem('user', JSON.stringify(res.user))
         this._route.navigate(['/userInfo'])
       })
     } catch (error) {
@@ -49,6 +51,7 @@ export class UserService {
 
   logOut(){
     this.firebaseAuth.signOut();
-    this._route.navigate(['/login']);
+    this._route.navigate(['/account']);
   }
 }
+

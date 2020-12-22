@@ -1,16 +1,19 @@
 <ion-header>
     <ion-toolbar>
-        <ion-title>Vos informations</ion-title>
+        <ion-title>Vos Produits</ion-title>
         <ion-button slot="start">
             <ion-menu-button menu="main-menu"></ion-menu-button>
         </ion-button>
     </ion-toolbar>
 </ion-header>
 <ion-content>
-        <div *ngIf="products$|async as product ">
-            <p>{{product}}</p>
-        </div>
         <ion-button (click)="navigate()">Ajouter un produit </ion-button>
         <ion-button (click)="logOut()">deconnexion</ion-button>
-    
+        <ion-item>
+            <div *ngIf="products$ |async as products">
+                {{products.name |json}}
+            </div>
+        </ion-item>
+       
 </ion-content>
+

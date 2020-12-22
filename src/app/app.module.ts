@@ -1,3 +1,4 @@
+import { UserService } from './shared/services/user.service';
 import { RouterModule } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -18,6 +19,8 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { environment } from 'src/environments/environment';
 import { AddProductComponent } from './features/account/containers/add-product/add-product.component';
+import { AuthGuard } from './shared/guards/auth.guard';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 @NgModule({
   declarations: [
@@ -39,6 +42,7 @@ import { AddProductComponent } from './features/account/containers/add-product/a
     AngularFirestoreModule,
     ReactiveFormsModule,
     FormsModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
   ],
   providers: [],
   bootstrap: [AppComponent]
