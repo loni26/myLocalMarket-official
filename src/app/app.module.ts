@@ -21,6 +21,7 @@ import { environment } from 'src/environments/environment';
 import { AddProductComponent } from './features/account/containers/add-product/add-product.component';
 import { AuthGuard } from './shared/guards/auth.guard';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { UpdProductComponent } from './features/account/containers/upd-product/upd-product.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { ServiceWorkerModule } from '@angular/service-worker';
     UserPageComponent,
     HomeComponent,
     SearchComponent,
-    AddProductComponent
+    AddProductComponent,
+    UpdProductComponent
   ],
   imports: [
     BrowserModule,

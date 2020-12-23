@@ -1,0 +1,57 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>Modifier votre produit </ion-title>
+        <ion-button slot="start">
+            <ion-menu-button menu="main-menu"></ion-menu-button>
+        </ion-button>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+    <div *ngIf="products$ |async as products">
+        <ion-item>
+            <div class="imgMarket">
+              <ion-img [src]="url"></ion-img>
+            </div>
+          </ion-item>
+          <div class="ion-text-center">
+            <ion-button>Ajouter une photo du produit</ion-button>
+          </div>
+        <div class="registerForm" *ngFor="let product of products">
+          <form [formGroup]="updProdForm" >
+            <ion-item>
+              <ion-label>Nom du produit  </ion-label>
+              <ion-input type="text" formControlName="productName">{{product.name}}</ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label>Description</ion-label>
+              <ion-textarea type="text"  formControlName="description">{{product.description}}</ion-textarea>
+            </ion-item>
+            <ion-list>
+                <ion-list-header>
+                  <ion-label>
+                    Choisir une catégorie de produit
+                  </ion-label>
+                </ion-list-header>
+              
+                <ion-item>
+                  <ion-label>Catégorie</ion-label>
+                  <ion-select placeholder="Choisir une catégorie" formControlName="categorie">
+                      <ion-select-option value="{{item}}" *ngFor="let item of categorie">{{item}}</ion-select-option>
+                  </ion-select>
+                </ion-item>
+              
+              </ion-list>
+            <ion-item>
+              <ion-label>Période de disponibilité </ion-label>
+              <ion-input type="text" formControlName="periode">{{product.periode}}</ion-input>
+            </ion-item>
+            
+            <ion-button shape="round" expand="block"   [disabled]="!updProdForm" >S'enregistrer</ion-button>
+            <ion-button shape="round" expand="block" routerLink="/userPage" >Annuler</ion-button>
+    
+      
+          </form>
+        </div>
+    </div>
+    
+  </ion-content>

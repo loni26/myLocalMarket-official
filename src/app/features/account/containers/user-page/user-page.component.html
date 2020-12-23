@@ -11,8 +11,23 @@
         <ion-button (click)="logOut()">deconnexion</ion-button>
         <ion-item>
             <div *ngIf="products$ |async as products">
-                {{products.name |json}}
+                <ion-card *ngFor="let product of products">
+                    <ion-card-header>
+                        <div class="imgMarket">
+                            <ion-img [src]="url"></ion-img>
+                        </div>
+                      <ion-card-title>{{product.name}}</ion-card-title>
+                    </ion-card-header>
+                  
+                    <ion-card-content>
+                      <p>{{product.description}}</p>
+                      <p>Période de disponibilité: {{product.periode}}</p>
+                    </ion-card-content>
+                    <ion-button  (click)="updateProd(product)" color="warning">Modifier </ion-button>
+                    <ion-button  (click)="logOut()" color="danger">Supprimer</ion-button>
+                  </ion-card>
             </div>
+
         </ion-item>
        
 </ion-content>

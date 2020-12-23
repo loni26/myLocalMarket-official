@@ -1,3 +1,4 @@
+import { UpdProductComponent } from './features/account/containers/upd-product/upd-product.component';
 import { AddUserInfoComponent } from './features/account/containers/add-user-info/add-user-info.component';
 import { AuthGuard } from './shared/guards/auth.guard';
 import { UserPageComponent } from './features/account/containers/user-page/user-page.component';
@@ -35,6 +36,10 @@ const routes: Routes = [
   {
     path: 'addProduct',
     component: AddProductComponent,
+  },
+  {
+    path: 'updProduct',
+    component: UpdProductComponent
   },
   {
     path: 'register',

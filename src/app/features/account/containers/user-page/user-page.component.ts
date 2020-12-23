@@ -11,23 +11,25 @@ import { IProduct } from 'src/app/shared/models/product';
   styleUrls: ['./user-page.component.scss']
 })
 export class UserPageComponent implements OnInit {
-  private _myProduct: Subject<any> = new Subject();
-  products$: Observable<IProduct> = this._myProduct.asObservable();
+  public products$: Observable<IProduct[]>;
+  url: string = "../../../../../assets/default-img/market.png";
   sub: Subscription;
-  constructor(private _ps: ProductService, private us: UserService, private _router: Router) { }
+  constructor(private _ps: ProductService, private us: UserService, private _router: Router) {
+    this.products$ = this._ps.readProductUser();
+   }
 
   async ngOnInit() {
-
-    this._ps.readProductUser().subscribe((data) =>{
-      console.log(data);
-      
-      this._myProduct.next(data);
-    });
   }
 
   navigate(){
   
     this._router.navigate(['addProduct']);
+  }
+  
+  async updateProd(product: IProduct){
+    console.log('product id---->', product.id);
+    
+   this._router.navigate(['updProduct', product.id])
   }
 
   logOut(){
