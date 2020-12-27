@@ -1,6 +1,6 @@
 export interface IProduct {
 
-    id?: string;
+    id: string;
     name: string, 
     description: string,
     categorie: string,
@@ -11,7 +11,7 @@ export interface IProduct {
 
 
 export class Products implements IProduct {
- 
+    public id: string
     public name: string; 
     public description: string;
     public categorie: string;
@@ -23,6 +23,7 @@ export class Products implements IProduct {
     }
 
     private fromData (data): void {
+        this.id = data.id || '';
         this.name = data.name || '';
         this.description = data.description || ''; 
         this.categorie = data.categorie || '';

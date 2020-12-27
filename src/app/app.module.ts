@@ -22,6 +22,7 @@ import { AddProductComponent } from './features/account/containers/add-product/a
 import { AuthGuard } from './shared/guards/auth.guard';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { UpdProductComponent } from './features/account/containers/upd-product/upd-product.component';
+import { ProductComponent } from './features/account/containers/product/product.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { UpdProductComponent } from './features/account/containers/upd-product/u
     HomeComponent,
     SearchComponent,
     AddProductComponent,
-    UpdProductComponent
+    UpdProductComponent,
+    ProductComponent
   ],
   imports: [
     BrowserModule,

@@ -23,12 +23,10 @@
                       <p>{{product.description}}</p>
                       <p>Période de disponibilité: {{product.periode}}</p>
                     </ion-card-content>
-                    <ion-button  (click)="updateProd(product)" color="warning">Modifier </ion-button>
+                    <ion-button  routerLink='/product/{{product.id}}' color="warning">Modifier </ion-button>
                     <ion-button  (click)="logOut()" color="danger">Supprimer</ion-button>
                   </ion-card>
             </div>
-
-        </ion-item>
-       
+        </ion-item>     
 </ion-content>
 

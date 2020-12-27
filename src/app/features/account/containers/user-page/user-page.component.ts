@@ -1,7 +1,7 @@
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from './../../../../shared/services/user.service';
 import { ProductService } from './../../../../shared/services/product.service';
-import { Observable, Subject, Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { IProduct } from 'src/app/shared/models/product';
 
@@ -23,14 +23,14 @@ export class UserPageComponent implements OnInit {
 
   navigate(){
   
-    this._router.navigate(['addProduct']);
+    this._router.navigate(['product']);
   }
   
-  async updateProd(product: IProduct){
+ /*  async updateProd(product: IProduct){
     console.log('product id---->', product.id);
     
-   this._router.navigate(['updProduct', product.id])
-  }
+   this._router.navigate([product.id])
+  } */
 
   logOut(){
     this.us.logOut();

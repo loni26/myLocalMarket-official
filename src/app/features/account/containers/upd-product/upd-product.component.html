@@ -7,7 +7,7 @@
     </ion-toolbar>
 </ion-header>
 <ion-content>
-    <div *ngIf="products$ |async as products">
+    <div *ngIf="products$ |async as product">
         <ion-item>
             <div class="imgMarket">
               <ion-img [src]="url"></ion-img>
@@ -16,15 +16,15 @@
           <div class="ion-text-center">
             <ion-button>Ajouter une photo du produit</ion-button>
           </div>
-        <div class="registerForm" *ngFor="let product of products">
+        <div class="registerForm">
           <form [formGroup]="updProdForm" >
             <ion-item>
               <ion-label>Nom du produit  </ion-label>
-              <ion-input type="text" formControlName="productName">{{product.name}}</ion-input>
+              <ion-input type="text" formControlName="name"></ion-input>
             </ion-item>
             <ion-item>
               <ion-label>Description</ion-label>
-              <ion-textarea type="text"  formControlName="description">{{product.description}}</ion-textarea>
+              <ion-textarea type="text"  formControlName="description"></ion-textarea>
             </ion-item>
             <ion-list>
                 <ion-list-header>
@@ -43,10 +43,10 @@
               </ion-list>
             <ion-item>
               <ion-label>Période de disponibilité </ion-label>
-              <ion-input type="text" formControlName="periode">{{product.periode}}</ion-input>
+              <ion-input type="text" formControlName="periode"></ion-input>
             </ion-item>
             
-            <ion-button shape="round" expand="block"   [disabled]="!updProdForm" >S'enregistrer</ion-button>
+            <ion-button shape="round" expand="block" (click)="updProduct(product)"   [disabled]="!updProdForm.valid" >Modifier</ion-button>
             <ion-button shape="round" expand="block" routerLink="/userPage" >Annuler</ion-button>
     
       

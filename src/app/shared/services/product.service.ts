@@ -28,7 +28,7 @@ export class ProductService implements OnDestroy{
 
   createNewProduct(name: string, description: string, periode: string, categorie: string): void {
     const id = this._afs.createId(); 
-    this._afs.collection(this.collectionName).add({
+    this._afs.collection(this.collectionName).doc(id).set({
       id,
       name,
       description,
@@ -55,11 +55,23 @@ export class ProductService implements OnDestroy{
     return this.products$;
   }
 
-  updateProductUser(product: IProduct){
-    return this._afs.doc(`${this.collectionName}/${product.id}`).update({name: 'je teste'})
+  updateProductUser(idProduct: IProduct, product: IProduct){
+    
+    
+    return this._afs.doc(`${this.collectionName}/${idProduct.id}`).update(product);
+
   }
+  /* updateProductUser(product: IProduct){
+    return this._afs.doc(`${this.collectionName}/${product.id}`).update({name: 'je teste'})
+  } */
 
   ngOnDestroy():void{
     this.sub.unsubscribe();
+  }
+
+  getProductById(id:string): Observable<IProduct>{
+    return this.products$.pipe(
+      map(products => products.find(product => product.id === id))
+    )
   }
 }
