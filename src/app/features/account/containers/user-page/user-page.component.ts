@@ -4,6 +4,7 @@ import { ProductService } from './../../../../shared/services/product.service';
 import { Observable, Subscription } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { IProduct } from 'src/app/shared/models/product';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-user-page',
@@ -14,7 +15,7 @@ export class UserPageComponent implements OnInit {
   public products$: Observable<IProduct[]>;
   url: string = "../../../../../assets/default-img/market.png";
   sub: Subscription;
-  constructor(private _ps: ProductService, private us: UserService, private _router: Router) {
+  constructor(private _ps: ProductService, private us: UserService, private _router: Router,  public alertCtrl: AlertController ) {
     this.products$ = this._ps.readProductUser();
    }
 
@@ -25,12 +26,24 @@ export class UserPageComponent implements OnInit {
   
     this._router.navigate(['product']);
   }
-  
- /*  async updateProd(product: IProduct){
-    console.log('product id---->', product.id);
-    
-   this._router.navigate([product.id])
-  } */
+
+  async openAlert(product: IProduct){
+    const ionAlert = await this.alertCtrl.create({
+      message: 'Voulez-vous supprimer ce produit ? ',
+      buttons: [{
+        text: 'Annuler',
+        role: 'Cancel',
+        cssClass: 'secondary'
+      },
+    {
+      text: 'Supprimer',
+      handler: () =>{
+        this._ps.deleteProd(product);
+      }
+    }]
+    });
+    ionAlert.present();
+  }
 
   logOut(){
     this.us.logOut();

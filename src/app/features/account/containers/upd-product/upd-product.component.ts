@@ -1,7 +1,7 @@
 import { ActivatedRoute } from '@angular/router';
 import { IProduct } from 'src/app/shared/models/product';
 import { Observable, BehaviorSubject, Subscription } from 'rxjs';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { ProductService } from 'src/app/shared/services/product.service';
 import { filter, map, switchMap } from 'rxjs/operators';
@@ -12,7 +12,7 @@ import { filter, map, switchMap } from 'rxjs/operators';
   templateUrl: './upd-product.component.html',
   styleUrls: ['./upd-product.component.scss']
 })
-export class UpdProductComponent implements OnInit {
+export class UpdProductComponent implements OnInit, OnDestroy {
 
   url: string = "../../../../../assets/default-img/market.png";
   updProdForm: FormGroup;
@@ -20,11 +20,11 @@ export class UpdProductComponent implements OnInit {
   products$: Observable<IProduct>;
   sub: Subscription;
 
-  constructor(private _fb: FormBuilder, private _ps: ProductService, private _route: ActivatedRoute) { 
+  constructor(private _fb: FormBuilder, private _ps: ProductService, private _route: ActivatedRoute) {
 
-    let currentId$: Observable<string> = _route.paramMap.pipe(
+    let currentId$: Observable<string> = this._route.paramMap.pipe(
       map(params => params.get('id')),
-      filter(id => id !==null),
+      filter(id => id !== null),
       map(id => String(id))
     )
 
@@ -32,22 +32,22 @@ export class UpdProductComponent implements OnInit {
       switchMap(id => _ps.getProductById(id.toString()))
     )
 
-      this.sub = this.products$.subscribe(
-        (product: IProduct) => this.editProdForm(product)
-      )
+    this.sub = this.products$.subscribe(
+      (product: IProduct) => this.editProdForm(product)
+    )
   }
 
   ngOnInit(): void {
     this.updProdForm = this._fb.group({
-      name: ['', [Validators.required,Validators.minLength(8), Validators.maxLength(80)]],
+      name: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(80)]],
       description: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(80)]],
       categorie: ['', Validators.required],
       periode: ['', Validators.required]
     })
   }
 
-  editProdForm(product: IProduct){
-    
+  editProdForm(product: IProduct) {
+
     this.updProdForm?.patchValue({
       name: product.name,
       description: product.description,
@@ -56,12 +56,13 @@ export class UpdProductComponent implements OnInit {
     })
   }
 
-  updProduct(product: IProduct):void{
+  updProduct(product: IProduct): void {
     let data: IProduct = this.updProdForm.value;
-
-    
     this._ps.updateProductUser(product, data);
-    
+  }
+
+  ngOnDestroy(): void {
+    this.sub.unsubscribe();
   }
 
 }

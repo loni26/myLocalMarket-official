@@ -20,11 +20,11 @@
           <form [formGroup]="updProdForm" >
             <ion-item>
               <ion-label>Nom du produit  </ion-label>
-              <ion-input type="text" formControlName="name"></ion-input>
+              <ion-input type="text" placeholder="nom du produit" formControlName="name"></ion-input>
             </ion-item>
             <ion-item>
               <ion-label>Description</ion-label>
-              <ion-textarea type="text"  formControlName="description"></ion-textarea>
+              <ion-textarea type="text" placeholder="Petite description du produit" formControlName="description"></ion-textarea>
             </ion-item>
             <ion-list>
                 <ion-list-header>
@@ -43,7 +43,7 @@
               </ion-list>
             <ion-item>
               <ion-label>Période de disponibilité </ion-label>
-              <ion-input type="text" formControlName="periode"></ion-input>
+              <ion-input type="text" placeholder="ex: Janvier à Octobre" formControlName="periode"></ion-input>
             </ion-item>
             
             <ion-button shape="round" expand="block" (click)="updProduct(product)"   [disabled]="!updProdForm.valid" >Modifier</ion-button>

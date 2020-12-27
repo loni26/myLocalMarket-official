@@ -58,7 +58,10 @@ export class ProductService implements OnDestroy{
   updateProductUser(idProduct: IProduct, product: IProduct){
     
     
-    return this._afs.doc(`${this.collectionName}/${idProduct.id}`).update(product);
+    return this._afs.doc(`${this.collectionName}/${idProduct.id}`).update(product).then( () =>{
+      this._route.navigate(['userPage'])
+    } 
+    );
 
   }
   /* updateProductUser(product: IProduct){
@@ -73,5 +76,9 @@ export class ProductService implements OnDestroy{
     return this.products$.pipe(
       map(products => products.find(product => product.id === id))
     )
+  }
+
+  deleteProd(product: IProduct){
+    return this._afs.doc(`${this.collectionName}/${product.id}`).delete();
   }
 }
