@@ -39,7 +39,7 @@ export class AddProductComponent implements OnInit {
     const categorie: string = this.productForm.value.categorie;
 
     this.ps.createNewProduct(name, description, periode, categorie);
-
+    /* this._camera.save(); */
     this.productForm.reset();
   }
 

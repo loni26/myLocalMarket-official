@@ -12,7 +12,7 @@ const  HTTP_URL_PATTERN:string = '^((http[s]?):\\/)\\/?([^:\\/\\s]+)((\\/\\w+)*)
 })
 export class AddUserInfoComponent implements OnInit {
 
-  url: string ='';
+  url: any ='';
   userInfoForm: FormGroup;
 
   constructor(private _mk: MarketService, private fb: FormBuilder, private _camera: CameraService) {
@@ -54,16 +54,14 @@ export class AddUserInfoComponent implements OnInit {
     this._mk.createInfoUser(domainName, domainAddress, localite,
       cp, courriel, adWeb, numero, lastName, firstName);
 
-      /* this._camera.postCamera(); */
+      this._camera.save();
 
     this.userInfoForm.reset();
   }
 
   async takePhoto() {
     this._camera.takePicture();
-     this.url = await this._camera.uploadedImgURL;
-   
-    
+     this.url = await this._camera.getPhoto();
   }
 
 }

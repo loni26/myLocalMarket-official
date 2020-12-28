@@ -12,9 +12,13 @@
       
       <form [formGroup]="userInfoForm" (ngSubmit)="registerUserInfo()">
         <ion-item>
-        <div class="imgMarket">
+        <div *ngIf="url else pasPhoto" class="imgMarket">
           <ion-img [src]="url"></ion-img>
         </div>
+
+        <ng-template #pasPhoto>
+          <ion-img src="../../../../../assets/default-img/market.png"></ion-img>
+        </ng-template>
       </ion-item>
         <ion-button  #btn (click)="takePhoto()" >Ajouter une photo de couverture</ion-button>
         <ion-item>

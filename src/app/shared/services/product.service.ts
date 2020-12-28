@@ -47,7 +47,7 @@ export class ProductService implements OnDestroy {
     const produits$:Observable<any> = this._afs.collection(this.collectionName, ref => ref.where('uid', '==', user.uid)).valueChanges();
     produits$.pipe(
       map(products => products.map(product => new Products(product))),
-      tap(products => console.log(`Products number: ${products.length}`))).subscribe(
+      tap(products => console.log(`nombres de produits: ${products.length}`))).subscribe(
         products => this._produtcs.next(products)
       )
 
