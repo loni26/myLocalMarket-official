@@ -23,6 +23,8 @@ import { AuthGuard } from './shared/guards/auth.guard';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { UpdProductComponent } from './features/account/containers/upd-product/upd-product.component';
 import { ProductComponent } from './features/account/containers/product/product.component';
+import { FruitsComponent } from './features/search/containers/fruits/fruits.component';
+import { ModalInfoComponent } from './shared/modal/modal-info/modal-info.component';
 
 
 @NgModule({
@@ -36,7 +38,9 @@ import { ProductComponent } from './features/account/containers/product/product.
     SearchComponent,
     AddProductComponent,
     UpdProductComponent,
-    ProductComponent
+    ProductComponent,
+    FruitsComponent,
+    ModalInfoComponent
   ],
   imports: [
     BrowserModule,

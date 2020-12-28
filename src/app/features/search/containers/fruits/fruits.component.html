@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Fruits</ion-title>
+    <ion-button slot="start">
+      <ion-menu-button menu="main-menu"></ion-menu-button>
+    </ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item>
+    <div *ngIf="fruits$ |async as fruits">
+      <ion-card *ngFor="let fruit of fruits">
+        <ion-card-header>
+          <div class="imgMarket">
+            <ion-img [src]="url"></ion-img>
+          </div>
+          <ion-card-title>{{fruit.name}}</ion-card-title>
+        </ion-card-header>
+
+        <ion-card-content>
+          <p>{{fruit.description}}</p>
+          <p>Catégorie: {{fruit.categorie}}</p>
+          <p>Période de disponibilité: {{fruit.periode}}</p>
+        </ion-card-content>
+        <div id="center">
+            <ion-button (click)="seeMore(fruit.uid)">Voir plus</ion-button>
+        </div>
+      </ion-card>
+    </div>
+  </ion-item>
+</ion-content>

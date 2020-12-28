@@ -1,0 +1,37 @@
+
+<ion-content>
+
+        <div *ngIf="myMarket$ |async as market">
+            <ion-card *ngFor="let item of market">
+                <ion-card-header>
+                  <ion-card-title>{{item.domainName}}</ion-card-title>
+                </ion-card-header>
+              
+                <ion-card-content>
+                  <ion-item>
+                    <ion-icon name="home"></ion-icon>
+                    <a href="https://www.google.ch/maps/place/ {{item.domainAddress}}, {{item.cp}} {{item.localite}}" target="_blank" id="text">   {{item.domainAddress}}, {{item.cp}} {{item.localite}}</a>
+                  </ion-item>
+                  <ion-item>
+                    <ion-icon name="mail"></ion-icon>
+                    <a id="text" href="mailto: {{item.courriel}}" target="_blanck">{{item.courriel}}</a>
+                  </ion-item>
+                  <ion-item>
+                    <ion-icon name="logo-google"></ion-icon>
+                    <a id="text" href="http://{{item.adWeb}}" target="_blanck">{{item.adWeb}}</a>
+                  </ion-item>
+                  <ion-item>
+                    <ion-icon name="person"></ion-icon>
+                    <p id="text">{{item.firstName}} {{item.lastName}}</p>
+                  </ion-item>
+                  <ion-item>
+                    <ion-icon name="call"></ion-icon>
+                    <a id="text" href="tel:{{item.numero}}">{{item.numero}}</a>
+                  </ion-item>
+                </ion-card-content>
+              </ion-card>
+        </div>
+       
+            <ion-button shape="round" expand="block" (click)="modalCtrl.dismiss()">Fermer</ion-button>
+          
+  </ion-content>

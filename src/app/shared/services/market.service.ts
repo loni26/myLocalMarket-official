@@ -1,6 +1,6 @@
 import { Injectable, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
-import {  Subscription } from 'rxjs';
+import { Subscription, Observable } from 'rxjs';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireAuth } from '@angular/fire/auth';
 import firebase from 'firebase/app';
@@ -12,6 +12,7 @@ export class MarketService implements OnDestroy {
   user: firebase.User;
   sub: Subscription;
   collectionName: string = 'Users';
+  market$: Observable<any>;
   constructor( private afs: AngularFirestore, private _afAuth: AngularFireAuth, private _route: Router) {
     this.sub= this._afAuth.authState.subscribe((user) => {
       this.user = user;
@@ -22,7 +23,7 @@ export class MarketService implements OnDestroy {
   async createInfoUser(domainName: string, domainAddress: string, localite: string,
     cp: string, courriel: string, adWeb: string, numero: string,
     lastName: string, firstName:string){
-       this.afs.collection(this.collectionName).doc(`mk-${this.user.uid}`).set({
+       await this.afs.collection(this.collectionName).doc(`mk-${this.user.uid}`).set({
         domainName,
         domainAddress,
         localite,
@@ -37,6 +38,10 @@ export class MarketService implements OnDestroy {
         this._route.navigate(['userPage']);
       }
       );
+  }
+
+   readMarket(userId: string){
+    this.market$=  this.afs.collection(this.collectionName, ref => ref.where('userUid', '==', userId)).valueChanges();
   }
 
   ngOnDestroy(){

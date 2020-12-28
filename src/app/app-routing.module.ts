@@ -1,3 +1,4 @@
+import { FruitsComponent } from './features/search/containers/fruits/fruits.component';
 import { ProductComponent } from './features/account/containers/product/product.component';
 import { UpdProductComponent } from './features/account/containers/upd-product/upd-product.component';
 import { AddUserInfoComponent } from './features/account/containers/add-user-info/add-user-info.component';
@@ -13,12 +14,11 @@ import { AddProductComponent } from './features/account/containers/add-product/a
 
 const routes: Routes = [ 
   {
-    path: 'home',
-    component: HomeComponent
-  },
-  {
     path:'search',
     component: SearchComponent
+  },{
+    path: 'fruits',
+    component: FruitsComponent
   },
   {
     path: 'account',
@@ -55,7 +55,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'search',
     pathMatch: 'full'
   }
 ];
