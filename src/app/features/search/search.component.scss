@@ -1,8 +1,21 @@
 #container {
-    @media (max-width: 779px) and (min-width: 0px) {
-      column-count: 2;
-    }
-    padding: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: stretch;
+      flex-wrap: wrap;
+
+      ion-card {
+        flex: 0 1 40%;
+      }
+
+      h5{
+        text-align: center;
+      }
+
   }
+
+  
+
+
 
   

@@ -27,7 +27,7 @@ export class ProductService implements OnDestroy {
   }
 
   createNewProduct(name: string, description: string, periode: string, categorie: string): void {
-    
+
     var user = JSON.parse(localStorage.getItem('user'));
     const id = this._afs.createId();
     this._afs.collection(this.collectionName).doc(id).set({
@@ -80,6 +80,15 @@ export class ProductService implements OnDestroy {
 
   getFruits(){
     return this._afs.collection(this.collectionName, ref => ref.where('categorie', '==', 'Fruits')).valueChanges();
+  }
+  getAnimaux(){
+    return this._afs.collection(this.collectionName, ref => ref.where('categorie', '==', 'Produits animaux')).valueChanges();
+  }
+  getLegumes(){
+    return this._afs.collection(this.collectionName, ref => ref.where('categorie', '==', 'Legumes')).valueChanges();
+  }
+  getBoissons(){
+    return this._afs.collection(this.collectionName, ref => ref.where('categorie', '==', 'Boissons')).valueChanges();
   }
 
   ngOnDestroy(): void {

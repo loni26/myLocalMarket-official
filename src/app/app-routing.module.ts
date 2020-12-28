@@ -1,3 +1,5 @@
+import { LegumesComponent } from './features/search/containers/legumes/legumes.component';
+import { AnimauxComponent } from './features/search/containers/animaux/animaux.component';
 import { FruitsComponent } from './features/search/containers/fruits/fruits.component';
 import { ProductComponent } from './features/account/containers/product/product.component';
 import { UpdProductComponent } from './features/account/containers/upd-product/upd-product.component';
@@ -11,6 +13,7 @@ import { HomeComponent } from './features/home/home.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AddProductComponent } from './features/account/containers/add-product/add-product.component';
+import { BoissonsComponent } from './features/search/containers/boissons/boissons.component';
 
 const routes: Routes = [ 
   {
@@ -19,6 +22,18 @@ const routes: Routes = [
   },{
     path: 'fruits',
     component: FruitsComponent
+  },
+  {
+    path: 'animaux',
+    component: AnimauxComponent
+  },
+  {
+    path: 'legumes',
+    component: LegumesComponent
+  },
+  {
+    path: 'boissons',
+    component: BoissonsComponent
   },
   {
     path: 'account',

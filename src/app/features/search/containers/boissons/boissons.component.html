@@ -1,0 +1,32 @@
+<ion-header>
+    <ion-toolbar>
+      <ion-title>Boissons</ion-title>
+      <ion-button slot="start">
+        <ion-menu-button menu="main-menu"></ion-menu-button>
+      </ion-button>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content>
+    <ion-item>
+      <div *ngIf="boissons$ |async as boissons">
+        <ion-card *ngFor="let item of boissons">
+          <ion-card-header>
+            <div class="imgMarket">
+              <ion-img [src]="url"></ion-img>
+            </div>
+            <ion-card-title>{{item.name}}</ion-card-title>
+          </ion-card-header>
+  
+          <ion-card-content>
+            <p>{{item.description}}</p>
+            <p>Catégorie: {{item.categorie}}</p>
+            <p>Période de disponibilité: {{item.periode}}</p>
+          </ion-card-content>
+          <div id="center">
+              <ion-button (click)="seeMore(item.uid)">Voir plus</ion-button>
+          </div>
+        </ion-card>
+      </div>
+    </ion-item>
+  </ion-content>

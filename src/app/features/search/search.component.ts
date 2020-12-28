@@ -19,4 +19,14 @@ export class SearchComponent implements OnInit {
     this._router.navigate(['/fruits'])
   }
 
+  searchAn(){
+    this._router.navigate(['/animaux'])
+  }
+  searchLegumes(){
+    this._router.navigate(['/legumes'])
+  }
+  searchDrink(){
+    this._router.navigate(['/boissons'])
+  }
+
 }

@@ -25,6 +25,9 @@ import { UpdProductComponent } from './features/account/containers/upd-product/u
 import { ProductComponent } from './features/account/containers/product/product.component';
 import { FruitsComponent } from './features/search/containers/fruits/fruits.component';
 import { ModalInfoComponent } from './shared/modal/modal-info/modal-info.component';
+import { AnimauxComponent } from './features/search/containers/animaux/animaux.component';
+import { LegumesComponent } from './features/search/containers/legumes/legumes.component';
+import { BoissonsComponent } from './features/search/containers/boissons/boissons.component';
 
 
 @NgModule({
@@ -40,7 +43,10 @@ import { ModalInfoComponent } from './shared/modal/modal-info/modal-info.compone
     UpdProductComponent,
     ProductComponent,
     FruitsComponent,
-    ModalInfoComponent
+    ModalInfoComponent,
+    AnimauxComponent,
+    LegumesComponent,
+    BoissonsComponent
   ],
   imports: [
     BrowserModule,
